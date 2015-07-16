@@ -24,4 +24,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)clickedStart:(id)sender {
+    //TODO : show popup of take picture
+}
 @end
