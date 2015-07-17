@@ -54,7 +54,7 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
         
         NSError *error = nil;
         
-        AVCaptureDevice *videoDevice = [CameraViewController deviceWithMediaType:AVMediaTypeVideo preferringPosition:AVCaptureDevicePositionFront];
+        AVCaptureDevice *videoDevice = [CameraViewController deviceWithMediaType:AVMediaTypeVideo preferringPosition:AVCaptureDevicePositionBack];
         AVCaptureDeviceInput *videoDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:videoDevice error:&error];
         
         if (error)
@@ -128,11 +128,6 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
         
         [[self session] startRunning];
     });
-    
-    _faceView = [[UIView alloc]initWithFrame:self.previewView.bounds];
-    [_faceView setBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.3]];
-    [self.previewView addSubview:_faceView];
-    [_faceView setHidden:YES];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -187,11 +182,11 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
         dispatch_async(dispatch_get_main_queue(), ^{
             if (isRecording)
             {
-                [[self changeCameraButton] setEnabled:NO];
+                //[[self changeCameraButton] setEnabled:NO];
             }
             else
             {
-                [[self changeCameraButton] setEnabled:YES];
+                //[[self changeCameraButton] setEnabled:YES];
             }
         });
     }
@@ -202,12 +197,12 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
         dispatch_async(dispatch_get_main_queue(), ^{
             if (isRunning)
             {
-                [[self changeCameraButton] setEnabled:YES];
+                //[[self changeCameraButton] setEnabled:YES];
                 [[self stillButton] setEnabled:YES];
             }
             else
             {
-                [[self changeCameraButton] setEnabled:NO];
+                //[[self changeCameraButton] setEnabled:NO];
                 [[self stillButton] setEnabled:NO];
             }
         });
@@ -219,59 +214,6 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 }
 
 #pragma mark Actions
-
-- (IBAction)changeCamera:(id)sender
-{
-    [[self changeCameraButton] setEnabled:NO];
-    [[self stillButton] setEnabled:NO];
-    
-    dispatch_async([self sessionQueue], ^{
-        AVCaptureDevice *currentVideoDevice = [[self videoDeviceInput] device];
-        AVCaptureDevicePosition preferredPosition = AVCaptureDevicePositionUnspecified;
-        AVCaptureDevicePosition currentPosition = [currentVideoDevice position];
-        
-        switch (currentPosition)
-        {
-            case AVCaptureDevicePositionUnspecified:
-                preferredPosition = AVCaptureDevicePositionBack;
-                break;
-            case AVCaptureDevicePositionBack:
-                preferredPosition = AVCaptureDevicePositionFront;
-                break;
-            case AVCaptureDevicePositionFront:
-                preferredPosition = AVCaptureDevicePositionBack;
-                break;
-        }
-        
-        AVCaptureDevice *videoDevice = [CameraViewController deviceWithMediaType:AVMediaTypeVideo preferringPosition:preferredPosition];
-        AVCaptureDeviceInput *videoDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:videoDevice error:nil];
-        
-        [[self session] beginConfiguration];
-        
-        [[self session] removeInput:[self videoDeviceInput]];
-        if ([[self session] canAddInput:videoDeviceInput])
-        {
-            [[NSNotificationCenter defaultCenter] removeObserver:self name:AVCaptureDeviceSubjectAreaDidChangeNotification object:currentVideoDevice];
-            
-            [CameraViewController setFlashMode:AVCaptureFlashModeAuto forDevice:videoDevice];
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(subjectAreaDidChange:) name:AVCaptureDeviceSubjectAreaDidChangeNotification object:videoDevice];
-            
-            [[self session] addInput:videoDeviceInput];
-            [self setVideoDeviceInput:videoDeviceInput];
-        }
-        else
-        {
-            [[self session] addInput:[self videoDeviceInput]];
-        }
-        
-        [[self session] commitConfiguration];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [[self changeCameraButton] setEnabled:YES];
-            [[self stillButton] setEnabled:YES];
-        });
-    });
-}
 
 - (IBAction)snapStillImage:(id)sender
 {
