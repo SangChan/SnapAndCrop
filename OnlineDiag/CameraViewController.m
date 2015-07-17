@@ -8,6 +8,7 @@
 
 #import "CameraViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "AFHTTPRequestOperationManager.h"
 
 static void * CapturingStillImageContext = &CapturingStillImageContext;
 static void * RecordingContext = &RecordingContext;
@@ -235,51 +236,25 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
             {
                 NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
                 UIImage *image = [[UIImage alloc] initWithData:imageData];
+                //[[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:nil];
                 
                 UIImage *cropImage = [self cropImage:image withRect:guideViewFrame];
+                //[[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[cropImage CGImage] orientation:(ALAssetOrientation)[cropImage imageOrientation] completionBlock:nil];
                 
-                [[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:nil];
-                [[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[cropImage CGImage] orientation:(ALAssetOrientation)[cropImage imageOrientation] completionBlock:nil];
+                UIImage *resizeImage = [self resizeImage:cropImage Width:400];
+                //[[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[resizeImage CGImage] orientation:(ALAssetOrientation)[resizeImage imageOrientation] completionBlock:nil];
+                
+                AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+                [manager POST:@"http://192.2.1.50/myapp/omrUpload/" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                    [formData appendPartWithFileData:UIImageJPEGRepresentation(resizeImage, 0.9) name:@"docfile" fileName:@"test.jpg" mimeType:@"image/jpg"];
+                } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    NSLog(@"JSON: %@", responseObject);
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    NSLog(@"Error: %@", error);
+                }];
             }
         }];
     });
-}
-
-- (UIImage *)getSubImage:(UIImage *)image Rect:(CGRect)rect{
-    CGImageRef subImageRef = CGImageCreateWithImageInRect(image.CGImage, rect);
-    CGRect smallBounds = CGRectMake(rect.origin.x, rect.origin.y, CGImageGetWidth(subImageRef), CGImageGetHeight(subImageRef));
-    
-    UIGraphicsBeginImageContext(smallBounds.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextDrawImage(context, smallBounds, subImageRef);
-    UIImage* smallImg = [UIImage imageWithCGImage:subImageRef];
-    UIGraphicsEndImageContext();
-    
-    return smallImg;
-}
-
-- (UIImage *)cropImage:(UIImage *)image Rect:(CGRect)rect {
-    CGRect screenBound = [[UIScreen mainScreen] bounds];
-    
-    CGFloat widthFactor = image.size.width / screenBound.size.width;
-    CGFloat heightFactor = image.size.height / screenBound.size.height;
-    /*CGFloat scale = [[UIScreen mainScreen] scale];
-    if (scale > 1.0f) {
-        rect = CGRectMake(rect.origin.x * scale * widthFactor,
-                          rect.origin.y * scale * heightFactor,
-                          rect.size.width * scale * widthFactor,
-                          rect.size.height * scale * heightFactor);
-    }*/
-    
-    rect = CGRectMake(rect.origin.x * widthFactor,
-                      rect.origin.y * heightFactor,
-                      rect.size.width * widthFactor,
-                      rect.size.height * heightFactor);
-    
-    CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, rect);
-    UIImage *result = [UIImage imageWithCGImage:imageRef];
-    CGImageRelease(imageRef);
-    return result;
 }
 
 - (UIImage *)cropImage:(UIImage *)oldImage withRect:(CGRect)rect{
@@ -298,6 +273,20 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
     UIImage *croppedImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return croppedImage;
+}
+
+- (UIImage *)resizeImage:(UIImage *)oldImage Width:(int)width {
+    //UIGraphicsBeginImageContext(newSize);
+    // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
+    // Pass 1.0 to force exact pixel size.
+    int widthByScale = width / [[UIScreen mainScreen]scale];
+    CGFloat widthFactor = oldImage.size.width / widthByScale;
+    CGSize newSize = CGSizeMake(widthByScale, oldImage.size.height / widthFactor);
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [oldImage drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 
 - (IBAction)focusAndExposeTap:(UIGestureRecognizer *)gestureRecognizer
