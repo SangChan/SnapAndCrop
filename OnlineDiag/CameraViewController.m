@@ -7,6 +7,7 @@
 //
 
 #import "CameraViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 static void * CapturingStillImageContext = &CapturingStillImageContext;
 static void * RecordingContext = &RecordingContext;
@@ -27,6 +28,8 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.guideView.layer.borderColor = [[UIColor redColor] CGColor];
+    self.guideView.layer.borderWidth = 1.0f;
     
     // Create the AVCaptureSession
     AVCaptureSession *session = [[AVCaptureSession alloc] init];
@@ -95,7 +98,7 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
             [session addOutput:frameOutput];
             AVCaptureConnection *connection = [frameOutput connectionWithMediaType:AVMediaTypeVideo];
             if ([connection isVideoStabilizationSupported]) {
-                [connection setEnablesVideoStabilizationWhenAvailable:YES];
+                [connection setPreferredVideoStabilizationMode:AVCaptureVideoStabilizationModeAuto];
             }
             [self setFrameOutput:frameOutput];
         }
@@ -217,6 +220,7 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 
 - (IBAction)snapStillImage:(id)sender
 {
+    __block CGRect guideViewFrame = [self.guideView frame];
     dispatch_async([self sessionQueue], ^{
         // Update the orientation on the still image output video connection before capturing.
         [[[self stillImageOutput] connectionWithMediaType:AVMediaTypeVideo] setVideoOrientation:[[(AVCaptureVideoPreviewLayer *)[[self previewView] layer] connection] videoOrientation]];
@@ -231,10 +235,69 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
             {
                 NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
                 UIImage *image = [[UIImage alloc] initWithData:imageData];
+                
+                UIImage *cropImage = [self cropImage:image withRect:guideViewFrame];
+                
                 [[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:nil];
+                [[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[cropImage CGImage] orientation:(ALAssetOrientation)[cropImage imageOrientation] completionBlock:nil];
             }
         }];
     });
+}
+
+- (UIImage *)getSubImage:(UIImage *)image Rect:(CGRect)rect{
+    CGImageRef subImageRef = CGImageCreateWithImageInRect(image.CGImage, rect);
+    CGRect smallBounds = CGRectMake(rect.origin.x, rect.origin.y, CGImageGetWidth(subImageRef), CGImageGetHeight(subImageRef));
+    
+    UIGraphicsBeginImageContext(smallBounds.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextDrawImage(context, smallBounds, subImageRef);
+    UIImage* smallImg = [UIImage imageWithCGImage:subImageRef];
+    UIGraphicsEndImageContext();
+    
+    return smallImg;
+}
+
+- (UIImage *)cropImage:(UIImage *)image Rect:(CGRect)rect {
+    CGRect screenBound = [[UIScreen mainScreen] bounds];
+    
+    CGFloat widthFactor = image.size.width / screenBound.size.width;
+    CGFloat heightFactor = image.size.height / screenBound.size.height;
+    /*CGFloat scale = [[UIScreen mainScreen] scale];
+    if (scale > 1.0f) {
+        rect = CGRectMake(rect.origin.x * scale * widthFactor,
+                          rect.origin.y * scale * heightFactor,
+                          rect.size.width * scale * widthFactor,
+                          rect.size.height * scale * heightFactor);
+    }*/
+    
+    rect = CGRectMake(rect.origin.x * widthFactor,
+                      rect.origin.y * heightFactor,
+                      rect.size.width * widthFactor,
+                      rect.size.height * heightFactor);
+    
+    CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, rect);
+    UIImage *result = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef);
+    return result;
+}
+
+- (UIImage *)cropImage:(UIImage *)oldImage withRect:(CGRect)rect{
+    CGRect screenBound = self.previewView.frame;
+    CGSize imageSize = rect.size;
+    CGFloat widthFactor = oldImage.size.width / screenBound.size.width;
+    CGFloat heightFactor = oldImage.size.height / screenBound.size.height;
+    
+    UIGraphicsBeginImageContextWithOptions( CGSizeMake( imageSize.width * widthFactor,
+                                                       imageSize.height * heightFactor),
+                                           NO,
+                                           0.);
+    [oldImage drawAtPoint:CGPointMake( -rect.origin.x*widthFactor, -rect.origin.y*heightFactor)
+                blendMode:kCGBlendModeCopy
+                    alpha:1.0];
+    UIImage *croppedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return croppedImage;
 }
 
 - (IBAction)focusAndExposeTap:(UIGestureRecognizer *)gestureRecognizer
