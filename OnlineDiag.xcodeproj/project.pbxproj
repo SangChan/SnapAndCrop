@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		633A76551B5E12CF00C15C3C /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 633A76541B5E12CF00C15C3C /* TableViewController.m */; };
+		633A76581B5E12F700C15C3C /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 633A76571B5E12F700C15C3C /* WebViewController.m */; };
 		63D6CAA01B588DCE00BFDABD /* AVCamPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D6CA9D1B588DCE00BFDABD /* AVCamPreviewView.m */; };
 		63D6CAA11B588DCE00BFDABD /* AVCamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D6CA9F1B588DCE00BFDABD /* AVCamViewController.m */; };
 		63D6CAA41B588EE500BFDABD /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D6CAA31B588EE500BFDABD /* CameraViewController.m */; };
@@ -39,6 +41,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		633A76531B5E12CF00C15C3C /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
+		633A76541B5E12CF00C15C3C /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		633A76561B5E12F700C15C3C /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		633A76571B5E12F700C15C3C /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		63D6CA9C1B588DCE00BFDABD /* AVCamPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamPreviewView.h; sourceTree = "<group>"; };
 		63D6CA9D1B588DCE00BFDABD /* AVCamPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamPreviewView.m; sourceTree = "<group>"; };
 		63D6CA9E1B588DCE00BFDABD /* AVCamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamViewController.h; sourceTree = "<group>"; };
@@ -167,6 +173,10 @@
 				63FDC6801B562C10006ECCBD /* Images.xcassets */,
 				63FDC6821B562C10006ECCBD /* LaunchScreen.xib */,
 				63FDC6731B562C10006ECCBD /* Supporting Files */,
+				633A76531B5E12CF00C15C3C /* TableViewController.h */,
+				633A76541B5E12CF00C15C3C /* TableViewController.m */,
+				633A76561B5E12F700C15C3C /* WebViewController.h */,
+				633A76571B5E12F700C15C3C /* WebViewController.m */,
 			);
 			path = OnlineDiag;
 			sourceTree = "<group>";
@@ -304,6 +314,8 @@
 				63FDC6791B562C10006ECCBD /* AppDelegate.m in Sources */,
 				63D6CABF1B58E4C700BFDABD /* AFURLConnectionOperation.m in Sources */,
 				63D6CABC1B58E4C700BFDABD /* AFHTTPSessionManager.m in Sources */,
+				633A76551B5E12CF00C15C3C /* TableViewController.m in Sources */,
+				633A76581B5E12F700C15C3C /* WebViewController.m in Sources */,
 				63D6CAC01B58E4C700BFDABD /* AFURLRequestSerialization.m in Sources */,
 				63D6CAA41B588EE500BFDABD /* CameraViewController.m in Sources */,
 				63D6CAA01B588DCE00BFDABD /* AVCamPreviewView.m in Sources */,

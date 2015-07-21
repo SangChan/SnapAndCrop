@@ -97,6 +97,7 @@
                         <outlet property="guideView" destination="dWj-oA-hb3" id="XUS-Hn-DU7"/>
                         <outlet property="previewView" destination="zsB-dV-Vhr" id="U7P-Hd-Kwt"/>
                         <outlet property="stillButton" destination="MvT-LN-twJ" id="R69-WM-VOM"/>
+                        <segue destination="gYl-Og-ySe" kind="show" identifier="showTableView" id="2mt-Sh-tai"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sc2-MV-KJn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -111,7 +112,7 @@
         <!--Table View Controller-->
         <scene sceneID="5tx-8Q-ng6">
             <objects>
-                <tableViewController id="gYl-Og-ySe" sceneMemberID="viewController">
+                <tableViewController id="gYl-Og-ySe" customClass="TableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="mcl-xP-Vas">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -132,12 +133,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N2x-5F-zQ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1639" y="489"/>
+            <point key="canvasLocation" x="1708" y="491"/>
         </scene>
-        <!--View Controller-->
+        <!--Web View Controller-->
         <scene sceneID="845-C3-e19">
             <objects>
-                <viewController id="T35-Uh-qHT" sceneMemberID="viewController">
+                <viewController id="T35-Uh-qHT" customClass="WebViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jYx-Ve-G4x"/>
                         <viewControllerLayoutGuide type="bottom" id="MMM-RM-QAF"/>
@@ -156,7 +157,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cJ0-kI-Lwq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2265" y="489"/>
+            <point key="canvasLocation" x="2441" y="491"/>
         </scene>
     </scenes>
 </document>

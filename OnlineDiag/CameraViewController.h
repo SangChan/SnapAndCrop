@@ -11,7 +11,9 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVFoundation/AVFoundation.h>
 
-@interface CameraViewController : ViewController <AVCaptureFileOutputRecordingDelegate,AVCaptureAudioDataOutputSampleBufferDelegate>
+@interface CameraViewController : ViewController <AVCaptureFileOutputRecordingDelegate,AVCaptureAudioDataOutputSampleBufferDelegate> {
+    NSArray *responseArray;
+}
 
 // For use in the storyboards.
 @property (nonatomic, weak) IBOutlet AVCamPreviewView *previewView;

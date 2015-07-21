@@ -7,6 +7,7 @@
 //
 
 #import "CameraViewController.h"
+#import "TableViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "AFHTTPRequestOperationManager.h"
 
@@ -245,10 +246,12 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
                 //[[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[resizeImage CGImage] orientation:(ALAssetOrientation)[resizeImage imageOrientation] completionBlock:nil];
                 
                 AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-                [manager POST:@"http://192.2.1.50/myapp/omrUpload/" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                [manager POST:@"http://192.1.27.118/myapp/omrUpload/" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                     [formData appendPartWithFileData:UIImageJPEGRepresentation(resizeImage, 0.9) name:@"docfile" fileName:@"test.jpg" mimeType:@"image/jpg"];
                 } success:^(AFHTTPRequestOperation *operation, id responseObject) {
                     NSLog(@"JSON: %@", responseObject);
+                    responseArray = [NSArray arrayWithArray:responseObject];
+                    [self performSegueWithIdentifier:@"showTableView" sender:self];
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                     NSLog(@"Error: %@", error);
                 }];
@@ -488,14 +491,19 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
     }];
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"showTableView"]) {
+        TableViewController *tvc = (TableViewController *)[segue destinationViewController];
+        [tvc setDiagResult:responseArray];
+        NSLog(@"%@",[[segue destinationViewController]description]);
+    }
 }
-*/
+
 
 @end
