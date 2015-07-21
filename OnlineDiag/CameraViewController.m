@@ -36,8 +36,8 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
     // Create the AVCaptureSession
     AVCaptureSession *session = [[AVCaptureSession alloc] init];
     [self setSession:session];
-    
-    if ([session canSetSessionPreset:AVCaptureSessionPresetHigh]) {
+    session.sessionPreset = AVCaptureSessionPresetPhoto;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone && [session canSetSessionPreset:AVCaptureSessionPresetHigh]) {
         session.sessionPreset = AVCaptureSessionPresetHigh;
     }
     
@@ -116,6 +116,7 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [self.navigationController.navigationBar setHidden:YES];
     dispatch_async([self sessionQueue], ^{
         [self addObserver:self forKeyPath:@"sessionRunningAndDeviceAuthorized" options:(NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew) context:SessionRunningAndDeviceAuthorizedContext];
         [self addObserver:self forKeyPath:@"stillImageOutput.capturingStillImage" options:(NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew) context:CapturingStillImageContext];
@@ -133,6 +134,12 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
         
         [[self session] startRunning];
     });
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setHidden:NO];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -247,7 +254,7 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
                 
                 AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
                 [manager POST:@"http://192.1.27.118/myapp/omrUpload/" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-                    [formData appendPartWithFileData:UIImageJPEGRepresentation(resizeImage, 0.9) name:@"docfile" fileName:@"test.jpg" mimeType:@"image/jpg"];
+                    [formData appendPartWithFileData:UIImageJPEGRepresentation(resizeImage, 0.9) name:@"docfile" fileName:@"ios_test.jpg" mimeType:@"image/jpg"];
                 } success:^(AFHTTPRequestOperation *operation, id responseObject) {
                     NSLog(@"JSON: %@", responseObject);
                     responseArray = [NSArray arrayWithArray:responseObject];

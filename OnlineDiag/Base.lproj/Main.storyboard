@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xiO-rw-vcV">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -29,7 +29,7 @@
                                     <segue destination="ADG-FB-XMJ" kind="show" id="8qj-od-Be6"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Online Diagonosis" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EmR-D7-kqr">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Online Diagonosis" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EmR-D7-kqr">
                                 <rect key="frame" x="231" y="108" width="139" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -44,10 +44,11 @@
                             <constraint firstAttribute="centerX" secondItem="EmR-D7-kqr" secondAttribute="centerX" id="uBy-Fv-GbI"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="uMu-k6-Fpq"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="347" y="491"/>
+            <point key="canvasLocation" x="1159" y="491"/>
         </scene>
         <!--Camera View Controller-->
         <scene sceneID="zxC-b1-a0j">
@@ -107,7 +108,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1022" y="491"/>
+            <point key="canvasLocation" x="1834" y="491"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="5tx-8Q-ng6">
@@ -144,10 +145,13 @@
                             <outlet property="delegate" destination="gYl-Og-ySe" id="RUO-Mg-aec"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="T35-Uh-qHT" kind="show" identifier="showWebView" id="a8R-kV-YdW"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N2x-5F-zQ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1708" y="491"/>
+            <point key="canvasLocation" x="2520" y="491"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="845-C3-e19">
@@ -171,7 +175,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cJ0-kI-Lwq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2441" y="491"/>
+            <point key="canvasLocation" x="3253" y="491"/>
+        </scene>
+        <!--Online Diag-->
+        <scene sceneID="VZX-f4-MAW">
+            <objects>
+                <navigationController title="Online Diag" automaticallyAdjustsScrollViewInsets="NO" id="xiO-rw-vcV" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jMw-zg-bh3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="o0Q-6E-tWi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="efG-iN-99F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="347" y="491"/>
         </scene>
     </scenes>
 </document>
