@@ -249,7 +249,7 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
                 UIImage *cropImage = [self cropImage:image withRect:guideViewFrame];
                 //[[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[cropImage CGImage] orientation:(ALAssetOrientation)[cropImage imageOrientation] completionBlock:nil];
                 
-                UIImage *resizeImage = [self resizeImage:cropImage Width:400];
+                UIImage *resizeImage = [self resizeImage:cropImage Width:800];
                 //[[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[resizeImage CGImage] orientation:(ALAssetOrientation)[resizeImage imageOrientation] completionBlock:nil];
                 
                 AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
