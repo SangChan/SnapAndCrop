@@ -47,15 +47,18 @@
     return [diagResult count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ResultCell" forIndexPath:indexPath];
     
     // Configure the cell...
     
+    cell.textLabel.text = [[diagResult objectAtIndex:indexPath.row] objectForKey:@"num"];
+    cell.detailTextLabel.text = [[diagResult objectAtIndex:indexPath.row] objectForKey:@"pos"];
+    
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
