@@ -53,8 +53,8 @@
     
     // Configure the cell...
     
-    cell.textLabel.text = [[diagResult objectAtIndex:indexPath.row] objectForKey:@"num"];
-    cell.detailTextLabel.text = [[diagResult objectAtIndex:indexPath.row] objectForKey:@"pos"];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@번 문제",[[diagResult objectAtIndex:indexPath.row] objectForKey:@"num"]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"답 : %@",[[diagResult objectAtIndex:indexPath.row] objectForKey:@"pos"]];
     
     return cell;
 }
