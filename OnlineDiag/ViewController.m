@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "UIButton+Custom.h"
 
 @interface ViewController ()
 
@@ -14,9 +15,12 @@
 
 @implementation ViewController
 
+@synthesize startButton;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"JeiOnlineDiag";
+    self.title = @"홈";
+    [self.startButton defaultStyle];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -28,4 +32,16 @@
 - (IBAction)clickedStart:(id)sender {
     //TODO : show popup of take picture
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setHidden:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.title = @"";
+    [self.navigationController.navigationBar setHidden:NO];
+}
+
 @end

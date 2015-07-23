@@ -19,32 +19,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sMu-CO-Wdk">
-                                <rect key="frame" x="284" y="533" width="33" height="30"/>
-                                <state key="normal" title="Start">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bi.gif" translatesAutoresizingMaskIntoConstraints="NO" id="WiZ-d4-7Fz">
+                                <rect key="frame" x="256" y="91" width="88" height="74"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="88" id="4lb-16-dBf"/>
+                                    <constraint firstAttribute="height" constant="74" id="VgU-ng-Beb"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="※주의사항" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rjx-DW-CEu">
+                                <rect key="frame" x="248" y="271" width="104" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="19"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqR-aX-eaz">
+                                <rect key="frame" x="133" y="300" width="350" height="83"/>
+                                <string key="text">- 사진을 찍을때 OMR 카드 모서리를 잘 맞춰주세요.
+- OMR 카드에 흐리게 표기 한 경우 인식시 오류가 발생 할 수 있으니 다시 한번 확인해 주세요.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sMu-CO-Wdk">
+                                <rect key="frame" x="225" y="512" width="150" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="5il-bp-x39"/>
+                                    <constraint firstAttribute="width" constant="150" id="OkR-vq-hKI"/>
+                                </constraints>
+                                <state key="normal" title="학력진단하기">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="clickedStart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bAg-TW-hRx"/>
-                                    <segue destination="ADG-FB-XMJ" kind="show" id="8qj-od-Be6"/>
+                                    <segue destination="UOM-Rt-IWH" kind="show" id="6AW-tB-2e4"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Online Diagonosis" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EmR-D7-kqr">
-                                <rect key="frame" x="231" y="108" width="139" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="sMu-CO-Wdk" secondAttribute="bottom" constant="37" id="Ck8-C1-QP5"/>
-                            <constraint firstItem="EmR-D7-kqr" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="88" id="StT-mc-5kF"/>
+                            <constraint firstItem="fqR-aX-eaz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="Fo8-kv-Yde"/>
+                            <constraint firstItem="Rjx-DW-CEu" firstAttribute="top" secondItem="WiZ-d4-7Fz" secondAttribute="bottom" constant="106" id="Hx5-2G-a8l"/>
+                            <constraint firstAttribute="centerX" secondItem="Rjx-DW-CEu" secondAttribute="centerX" id="KTu-cb-jZ8"/>
+                            <constraint firstItem="fqR-aX-eaz" firstAttribute="top" secondItem="Rjx-DW-CEu" secondAttribute="bottom" constant="8" id="LX2-xf-dRS"/>
+                            <constraint firstAttribute="centerX" secondItem="WiZ-d4-7Fz" secondAttribute="centerX" id="RmO-YN-6a4"/>
+                            <constraint firstItem="WiZ-d4-7Fz" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="27" id="UsM-zC-l5x"/>
                             <constraint firstAttribute="centerX" secondItem="sMu-CO-Wdk" secondAttribute="centerX" constant="-0.5" id="VpY-3W-jaW"/>
-                            <constraint firstAttribute="centerX" secondItem="EmR-D7-kqr" secondAttribute="centerX" id="uBy-Fv-GbI"/>
+                            <constraint firstAttribute="centerX" secondItem="fqR-aX-eaz" secondAttribute="centerX" constant="-8" id="Zbu-AM-OUt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fqR-aX-eaz" secondAttribute="trailing" constant="10" id="aJ4-EO-srL"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uMu-k6-Fpq"/>
+                    <connections>
+                        <outlet property="startButton" destination="sMu-CO-Wdk" id="Hxf-sp-Lba"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -64,30 +92,35 @@
                         <subviews>
                             <view alpha="0.20000000000000001" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dWj-oA-hb3">
                                 <rect key="frame" x="21" y="50" width="558" height="704"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MvT-LN-twJ">
+                                        <rect key="frame" x="204" y="474" width="150" height="60"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="b6N-28-0u2"/>
+                                            <constraint firstAttribute="height" constant="60" id="gQ0-ec-9sm"/>
+                                        </constraints>
+                                        <state key="normal" title="Shoot">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="snapStillImage:" destination="ADG-FB-XMJ" eventType="touchUpInside" id="nIU-2n-bWn"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="MvT-LN-twJ" firstAttribute="centerX" secondItem="dWj-oA-hb3" secondAttribute="centerX" id="YL6-2P-hzY"/>
                                     <constraint firstAttribute="width" secondItem="dWj-oA-hb3" secondAttribute="height" multiplier="172:217" id="h8Q-iA-WAo"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MvT-LN-twJ">
-                                <rect key="frame" x="280" y="567" width="41" height="30"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Shoot">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="snapStillImage:" destination="ADG-FB-XMJ" eventType="touchUpInside" id="nIU-2n-bWn"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="dWj-oA-hb3" firstAttribute="top" secondItem="kc7-7b-vT8" secondAttribute="bottom" constant="30" id="3ka-Hc-sEe"/>
                             <constraint firstItem="dWj-oA-hb3" firstAttribute="leading" secondItem="zsB-dV-Vhr" secondAttribute="leadingMargin" constant="5" id="IIs-j1-glJ"/>
-                            <constraint firstItem="0bd-lE-DYB" firstAttribute="top" secondItem="MvT-LN-twJ" secondAttribute="bottom" constant="10" id="XdW-Hk-rMB"/>
                             <constraint firstAttribute="centerX" secondItem="dWj-oA-hb3" secondAttribute="centerX" id="sSI-l9-rPf"/>
-                            <constraint firstAttribute="centerX" secondItem="MvT-LN-twJ" secondAttribute="centerX" id="t3v-Di-PaE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dWj-oA-hb3" secondAttribute="trailing" constant="5" id="zJZ-M2-KZL"/>
                         </constraints>
                         <connections>
@@ -195,5 +228,93 @@
             </objects>
             <point key="canvasLocation" x="347" y="491"/>
         </scene>
+        <!--User View Controller-->
+        <scene sceneID="yAw-qd-rmu">
+            <objects>
+                <viewController id="UOM-Rt-IWH" customClass="UserViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mec-bo-9RA"/>
+                        <viewControllerLayoutGuide type="bottom" id="GYP-w8-URs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wEi-LM-MRi">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yc6-Em-k6X">
+                                <rect key="frame" x="55" y="81" width="80" height="81"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="평가자의 정보를 입력해 주세요." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BLN-Af-zmp">
+                                <rect key="frame" x="167" y="111" width="211" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kJc-xf-6ZY">
+                                <rect key="frame" x="0.0" y="170" width="600" height="1"/>
+                                <color key="backgroundColor" red="0.72156862745098038" green="0.72156862745098038" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="foT-iz-vQl">
+                                <rect key="frame" x="0.0" y="171" width="600" height="1"/>
+                                <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="이름" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQp-zG-sqw">
+                                <rect key="frame" x="74" y="205" width="30" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="등급" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZS-i2-Jz0">
+                                <rect key="frame" x="74" y="260" width="30" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="휴대전화" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="obA-go-4Xz">
+                                <rect key="frame" x="74" y="315" width="66" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="김재능" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0nY-gL-hXq">
+                                <rect key="frame" x="173" y="201" width="394" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="D" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Oik-Tg-N5A">
+                                <rect key="frame" x="173" y="256" width="394" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="010-1111-2222" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gKi-SW-5u0">
+                                <rect key="frame" x="173" y="311" width="394" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hbz-49-L5x">
+                                <rect key="frame" x="225" y="525" width="150" height="50"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="OMR 카드 사진 찍기">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="ADG-FB-XMJ" kind="show" id="wT5-E6-ItO"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BLN-Af-zmp" firstAttribute="leading" secondItem="yc6-Em-k6X" secondAttribute="trailing" constant="32" id="23t-my-wMn"/>
+                            <constraint firstAttribute="centerX" secondItem="Hbz-49-L5x" secondAttribute="centerX" id="Tg8-g5-wvD"/>
+                            <constraint firstItem="yc6-Em-k6X" firstAttribute="leading" secondItem="wEi-LM-MRi" secondAttribute="leadingMargin" constant="39" id="o20-CV-iOe"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GOk-Mb-K36" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1475" y="1280"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="bi.gif" width="175" height="148"/>
+    </resources>
 </document>

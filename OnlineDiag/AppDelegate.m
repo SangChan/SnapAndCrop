@@ -24,9 +24,12 @@
     
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.23 green:0.69 blue:0.73 alpha:1.0]];
     
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     // Navigation bar buttons appearance
     
-    //[[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor textBarColor], NSForegroundColorAttributeName, shadowColor, NSShadowAttributeName, [UIFont fontWithName:@"FontName" size:titleSize], NSFontAttributeName, nil];
     
     return YES;
 }
