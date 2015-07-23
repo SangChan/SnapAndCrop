@@ -7,12 +7,15 @@
 //
 
 #import "UserViewController.h"
+#import "UIButton+Custom.h"
 
 @interface UserViewController ()
 
 @end
 
 @implementation UserViewController
+
+@synthesize gradeTextFiled, telTextField, nameTextFiled, startSnapButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,6 +30,8 @@
     UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithTitle:@"홈" style:UIBarButtonItemStylePlain target:self action:@selector(homebuttonPressed)];
     [self.navigationItem setRightBarButtonItem:homeButton];
     // Do any additional setup after loading the view.
+    
+    [self.startSnapButton fillRectStyle];
     
 }
 

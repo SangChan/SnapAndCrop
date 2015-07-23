@@ -11,5 +11,6 @@
 @interface UIButton (Custom)
 
 -(void)defaultStyle;
+-(void)fillRectStyle;
 
 @end

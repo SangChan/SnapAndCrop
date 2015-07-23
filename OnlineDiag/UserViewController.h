@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface UserViewController : UIViewController
-
+@property (strong, nonatomic) IBOutlet UITextField *gradeTextFiled;
+@property (strong, nonatomic) IBOutlet UITextField *telTextField;
+@property (strong, nonatomic) IBOutlet UITextField *nameTextFiled;
+@property (strong, nonatomic) IBOutlet UIButton *startSnapButton;
 @end
