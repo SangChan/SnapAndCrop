@@ -35,6 +35,7 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
     
     self.guideView.layer.borderColor = [[UIColor redColor] CGColor];
     self.guideView.layer.borderWidth = 1.0f;
+    self.guideView.backgroundColor = [UIColor clearColor];
     
     // Create the AVCaptureSession
     AVCaptureSession *session = [[AVCaptureSession alloc] init];
