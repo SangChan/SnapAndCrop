@@ -58,15 +58,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="sMu-CO-Wdk" secondAttribute="bottom" constant="30" id="Ck8-C1-QP5"/>
-                            <constraint firstItem="fqR-aX-eaz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="Fo8-kv-Yde"/>
+                            <constraint firstItem="fqR-aX-eaz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Fo8-kv-Yde"/>
                             <constraint firstItem="Rjx-DW-CEu" firstAttribute="top" secondItem="WiZ-d4-7Fz" secondAttribute="bottom" constant="106" id="Hx5-2G-a8l"/>
                             <constraint firstAttribute="centerX" secondItem="Rjx-DW-CEu" secondAttribute="centerX" id="KTu-cb-jZ8"/>
                             <constraint firstItem="fqR-aX-eaz" firstAttribute="top" secondItem="Rjx-DW-CEu" secondAttribute="bottom" constant="8" id="LX2-xf-dRS"/>
                             <constraint firstAttribute="centerX" secondItem="WiZ-d4-7Fz" secondAttribute="centerX" id="RmO-YN-6a4"/>
                             <constraint firstItem="WiZ-d4-7Fz" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="27" id="UsM-zC-l5x"/>
                             <constraint firstAttribute="centerX" secondItem="sMu-CO-Wdk" secondAttribute="centerX" constant="-0.5" id="VpY-3W-jaW"/>
-                            <constraint firstAttribute="centerX" secondItem="fqR-aX-eaz" secondAttribute="centerX" constant="-8" id="Zbu-AM-OUt"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="fqR-aX-eaz" secondAttribute="trailing" constant="10" id="aJ4-EO-srL"/>
+                            <constraint firstAttribute="centerX" secondItem="fqR-aX-eaz" secondAttribute="centerX" id="Zbu-AM-OUt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fqR-aX-eaz" secondAttribute="trailing" id="aJ4-EO-srL"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uMu-k6-Fpq"/>
