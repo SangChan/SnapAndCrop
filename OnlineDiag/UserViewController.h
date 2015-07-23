@@ -13,4 +13,5 @@
 @property (strong, nonatomic) IBOutlet UITextField *telTextField;
 @property (strong, nonatomic) IBOutlet UITextField *nameTextFiled;
 @property (strong, nonatomic) IBOutlet UIButton *startSnapButton;
+- (IBAction)clickedStartSnapButton:(id)sender;
 @end

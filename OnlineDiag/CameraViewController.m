@@ -10,6 +10,7 @@
 #import "TableViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "AFHTTPRequestOperationManager.h"
+#import "UIButton+Custom.h"
 
 static void * CapturingStillImageContext = &CapturingStillImageContext;
 static void * RecordingContext = &RecordingContext;
@@ -30,6 +31,8 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.stillButton fillRectStyle];
+    
     self.guideView.layer.borderColor = [[UIColor redColor] CGColor];
     self.guideView.layer.borderWidth = 1.0f;
     

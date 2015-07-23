@@ -54,4 +54,6 @@
 }
 */
 
+- (IBAction)clickedStartSnapButton:(id)sender {
+}
 @end

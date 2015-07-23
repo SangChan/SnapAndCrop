@@ -25,6 +25,18 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithTitle:@"홈" style:UIBarButtonItemStylePlain target:self action:@selector(homebuttonPressed)];
+    [self.navigationItem setRightBarButtonItem:homeButton];
+}
+
+- (void)homebuttonPressed {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.title = @"";
 }
 
 - (void)didReceiveMemoryWarning {
