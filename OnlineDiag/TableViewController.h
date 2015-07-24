@@ -10,6 +10,7 @@
 
 @interface TableViewController : UITableViewController
 
+@property (strong, nonatomic) IBOutlet UIButton *OKButton;
 @property (nonatomic, strong) NSArray *diagResult;
 
 @end

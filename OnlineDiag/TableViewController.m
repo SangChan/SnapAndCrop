@@ -7,6 +7,7 @@
 //
 
 #import "TableViewController.h"
+#import "UIButton+Custom.h"
 
 @interface TableViewController ()
 
@@ -14,7 +15,7 @@
 
 @implementation TableViewController
 
-@synthesize diagResult;
+@synthesize diagResult, OKButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,6 +29,7 @@
     
     UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithTitle:@"홈" style:UIBarButtonItemStylePlain target:self action:@selector(homebuttonPressed)];
     [self.navigationItem setRightBarButtonItem:homeButton];
+    [OKButton fillRectStyle];
 }
 
 - (void)homebuttonPressed {
@@ -49,29 +51,6 @@
 }
 
 #pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    return [diagResult count];
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ResultCell" forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    cell.textLabel.text = [NSString stringWithFormat:@"%@번 문제",[[diagResult objectAtIndex:indexPath.row] objectForKey:@"num"]];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"답 : %@",[[diagResult objectAtIndex:indexPath.row] objectForKey:@"pos"]];
-    
-    return cell;
-}
-
 
 /*
 // Override to support conditional editing of the table view.

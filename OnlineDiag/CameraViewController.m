@@ -230,7 +230,12 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 }
 
 #pragma mark Actions
+- (IBAction)snapStillImage:(id)sender
+{
+    [self performSegueWithIdentifier:@"showTableView" sender:self];
+}
 
+/*
 - (IBAction)snapStillImage:(id)sender
 {
     __block CGRect guideViewFrame = [self.guideView frame];
@@ -270,7 +275,7 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
         }];
     });
 }
-
+*/
 - (UIImage *)cropImage:(UIImage *)oldImage withRect:(CGRect)rect{
     CGRect screenBound = self.previewView.frame;
     CGSize imageSize = rect.size;
