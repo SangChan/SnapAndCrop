@@ -16,6 +16,9 @@
 @implementation TableViewController
 
 @synthesize diagResult, OKButton;
+@synthesize answer1,answer2,answer3,answer4,answer5,answer6,answer7,answer8,answer9,answer10;
+@synthesize answer11,answer12,answer13,answer14,answer15,answer16,answer17,answer18,answer19,answer20;
+@synthesize answer21,answer22,answer23,answer24,answer25,answer26,answer27,answer28,answer29;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,6 +33,26 @@
     UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithTitle:@"홈" style:UIBarButtonItemStylePlain target:self action:@selector(homebuttonPressed)];
     [self.navigationItem setRightBarButtonItem:homeButton];
     [OKButton fillRectStyle];
+    
+    
+    //for (NSDictionary *answerData in diagResult) {
+    //    answerData
+    //}
+    int j = 0;
+    for (int i = 1; i < 30; i++) {
+        NSDictionary *answerData = [diagResult objectAtIndex:j];
+        if (i == [[answerData objectForKey:@"num"] intValue]) {
+            [self setAnswer:[[answerData objectForKey:@"pos"] intValue] ToIndex:i];
+            j++;
+        }
+        [self setAnswer:i ToIndex:i];
+    }
+}
+
+- (void)setAnswer:(int)labelVarInt ToIndex:(int)index {
+    
+    [self setValue:[NSString stringWithFormat:@"%i", labelVarInt] forKeyPath:[NSString stringWithFormat:@"answer%i.text", index]];
+    
 }
 
 - (void)homebuttonPressed {
