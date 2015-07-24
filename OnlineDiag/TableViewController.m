@@ -45,7 +45,9 @@
             [self setAnswer:[[answerData objectForKey:@"pos"] intValue] ToIndex:i];
             j++;
         }
-        [self setAnswer:i ToIndex:i];
+        else {
+            [self setAnswer:0 ToIndex:i];
+        }
     }
 }
 
