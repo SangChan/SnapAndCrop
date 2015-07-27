@@ -43,7 +43,7 @@
     //}
     int j = 0;
     for (int i = 1; i < 30; i++) {
-        NSDictionary *answerData = [diagResult objectAtIndex:j];
+        NSDictionary *answerData = (j < [diagResult count]) ? [diagResult objectAtIndex:j] : nil;
         if (i == [[answerData objectForKey:@"num"] intValue]) {
             [self setAnswer:[[answerData objectForKey:@"pos"] intValue] ToIndex:i];
             j++;
