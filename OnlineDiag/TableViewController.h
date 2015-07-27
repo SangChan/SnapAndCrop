@@ -42,5 +42,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *answer28;
 @property (strong, nonatomic) IBOutlet UILabel *answer29;
 
+- (IBAction)OKButtonClicked:(id)sender;
 
 @end

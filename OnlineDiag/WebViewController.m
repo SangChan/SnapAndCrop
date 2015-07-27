@@ -14,6 +14,8 @@
 
 @implementation WebViewController
 
+@synthesize absoluteURL;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -21,6 +23,16 @@
     
     UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithTitle:@"홈" style:UIBarButtonItemStylePlain target:self action:@selector(homebuttonPressed)];
     [self.navigationItem setRightBarButtonItem:homeButton];
+    
+    [self.webView setDelegate:self];
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    NSURL *url = [NSURL URLWithString:[absoluteURL stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    [self.webView loadRequest:urlRequest];
 }
 
 - (void)homebuttonPressed {
@@ -41,5 +53,8 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    NSLog(@"error =%@",error);
+}
 
 @end

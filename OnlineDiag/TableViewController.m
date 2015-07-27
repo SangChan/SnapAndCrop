@@ -7,9 +7,12 @@
 //
 
 #import "TableViewController.h"
+#import "WebViewController.h"
 #import "UIButton+Custom.h"
 
-@interface TableViewController ()
+@interface TableViewController () {
+    NSString *diagURL;
+}
 
 @end
 
@@ -111,14 +114,24 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"showWebView"]) {
+        WebViewController *wvc = (WebViewController *)[segue destinationViewController];
+        [wvc setAbsoluteURL:diagURL];
+        //[tvc setDiagResult:responseArray];
+        NSLog(@"%@",[[segue destinationViewController]description]);
+    }
 }
-*/
 
+- (IBAction)OKButtonClicked:(id)sender {
+    
+    diagURL = [NSString stringWithFormat:@"http://ml2.jei-victory.com/jeibiz/haksys/mobileomr/html/diagnosis.asp?hname=%@&dung=%@&tel=%@&mun001=%d&mun002=%d&mun003=%d&mun004=%d&mun005=%d&mun006=%d&mun007=%d&mun008=%d&mun009=%d&mun010=%d&mun011=%d&mun012=%d&mun013=%d&mun014=%d&mun015=%d&mun016=%d&mun017=%d&mun018=%d&mun019=%d&mun020=%d&mun021=%d&mun022=%d&mun023=%d&mun024=%d&mun025=%d&mun026=%d&mun027=%d&mun028=%d&mun029=%d",@"test",@"D",@"010-1111-2222",[[answer1 text] intValue],[[answer2 text] intValue],[[answer3 text] intValue],[[answer4 text] intValue],[[answer5 text] intValue],[[answer6 text] intValue],[[answer7 text] intValue],[[answer8 text] intValue],[[answer9 text] intValue],[[answer10 text] intValue],[[answer11 text] intValue],[[answer12 text] intValue],[[answer13 text] intValue],[[answer14 text] intValue],[[answer15 text] intValue],[[answer16 text] intValue],[[answer17 text] intValue],[[answer18 text] intValue],[[answer19 text] intValue],[[answer20 text] intValue],[[answer21 text] intValue],[[answer22 text] intValue],[[answer23 text] intValue],[[answer24 text] intValue],[[answer25 text] intValue],[[answer26 text] intValue],[[answer27 text] intValue],[[answer28 text] intValue],[[answer29 text] intValue] ];
+    [self performSegueWithIdentifier:@"showWebView" sender:self];
+}
 @end
