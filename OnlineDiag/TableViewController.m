@@ -54,10 +54,12 @@
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+}
+
 - (void)setAnswer:(int)labelVarInt ToIndex:(int)index {
-    
     [self setValue:[NSString stringWithFormat:@"%i", labelVarInt] forKeyPath:[NSString stringWithFormat:@"answer%i.text", index]];
-    
 }
 
 - (void)homebuttonPressed {
